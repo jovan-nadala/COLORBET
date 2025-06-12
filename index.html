@@ -15,7 +15,7 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 50%, #16213e 100%);
+            background: #000000;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -34,30 +34,42 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 0, 100, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(0, 255, 255, 0.1) 0%, transparent 50%);
+                radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 0, 100, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(0, 255, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 60% 60%, rgba(138, 43, 226, 0.06) 0%, transparent 50%),
+                linear-gradient(45deg, rgba(255, 215, 0, 0.02) 0%, transparent 50%, rgba(255, 215, 0, 0.02) 100%);
             pointer-events: none;
             z-index: -1;
+            animation: backgroundShift 15s ease-in-out infinite alternate;
+        }
+
+        @keyframes backgroundShift {
+            0% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+            100% { transform: scale(1.2) rotate(2deg); opacity: 1; }
         }
 
         .casino-header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             position: relative;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.2);
         }
 
         .casino-title {
             font-family: 'Orbitron', monospace;
             font-size: 3rem;
             font-weight: 900;
-            background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
+            background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700, #ffb347, #ffd700);
+            background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
-            margin-bottom: 10px;
-            animation: glow 2s ease-in-out infinite alternate;
+            margin-bottom: 8px;
+            animation: glow 2s ease-in-out infinite alternate, gradientShift 3s ease-in-out infinite;
+            letter-spacing: 3px;
         }
 
         @keyframes glow {
@@ -65,21 +77,68 @@
             to { text-shadow: 0 0 40px rgba(255, 215, 0, 0.8); }
         }
 
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         .casino-subtitle {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #ccc;
-            margin-bottom: 20px;
+            margin-bottom: 0;
+            font-weight: 500;
+            letter-spacing: 1px;
         }
 
         .game-container {
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 20px;
-            padding: 30px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(20, 20, 20, 0.9));
+            border-radius: 25px;
+            padding: 40px;
+            backdrop-filter: blur(25px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.8),
+                0 0 0 1px rgba(255, 215, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05),
+                0 0 100px rgba(255, 215, 0, 0.1);
             max-width: 800px;
             width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.05), transparent);
+            animation: shimmer 4s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        @keyframes wheelGlow {
+            0% { 
+                box-shadow: 
+                    0 0 40px rgba(255, 215, 0, 0.4),
+                    0 0 80px rgba(255, 215, 0, 0.2),
+                    0 0 120px rgba(255, 215, 0, 0.1),
+                    inset 0 0 30px rgba(0, 0, 0, 0.5);
+            }
+            100% { 
+                box-shadow: 
+                    0 0 60px rgba(255, 215, 0, 0.6),
+                    0 0 100px rgba(255, 215, 0, 0.3),
+                    0 0 140px rgba(255, 215, 0, 0.2),
+                    inset 0 0 30px rgba(0, 0, 0, 0.5);
+            }
         }
 
         .balance-section {
@@ -87,10 +146,26 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 30px;
-            padding: 20px;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.05));
-            border-radius: 15px;
-            border: 1px solid rgba(255, 215, 0, 0.3);
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(30, 30, 30, 0.6));
+            border-radius: 20px;
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05),
+                0 0 50px rgba(255, 215, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .balance-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.5), transparent);
         }
 
         .balance-info {
@@ -170,9 +245,14 @@
             color: white;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
             border: 8px solid #ffd700;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            box-shadow: 
+                0 0 40px rgba(255, 215, 0, 0.4),
+                0 0 80px rgba(255, 215, 0, 0.2),
+                0 0 120px rgba(255, 215, 0, 0.1),
+                inset 0 0 30px rgba(0, 0, 0, 0.5);
             transition: transform 3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             position: relative;
+            animation: wheelGlow 3s ease-in-out infinite alternate;
         }
 
         .wheel::before {
@@ -228,7 +308,7 @@
         }
 
         .bet-section {
-            margin: 30px 0;
+            margin: 25px 0;
         }
 
         .bet-amount-controls {
@@ -247,13 +327,27 @@
         .bet-amount-input {
             font-family: 'Orbitron', monospace;
             font-size: 1.2rem;
-            padding: 8px 15px;
-            border: 2px solid #ffd700;
-            border-radius: 8px;
-            background: rgba(0, 0, 0, 0.5);
+            padding: 12px 18px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(20, 20, 20, 0.6));
             color: #ffd700;
             text-align: center;
-            width: 120px;
+            width: 140px;
+            box-shadow: 
+                0 5px 15px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05),
+                0 0 20px rgba(255, 215, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .bet-amount-input:focus {
+            outline: none;
+            border-color: rgba(255, 215, 0, 0.6);
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05),
+                0 0 30px rgba(255, 215, 0, 0.2);
         }
 
         .quick-bet-buttons {
@@ -264,18 +358,25 @@
         }
 
         .quick-bet-btn {
-            padding: 8px 15px;
-            border: 1px solid #ffd700;
-            border-radius: 6px;
-            background: rgba(255, 215, 0, 0.1);
+            padding: 10px 18px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(20, 20, 20, 0.4));
             color: #ffd700;
             cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow: 
+                0 3px 10px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
         .quick-bet-btn:hover {
-            background: rgba(255, 215, 0, 0.3);
-            transform: translateY(-1px);
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
+            transform: translateY(-2px);
+            box-shadow: 
+                0 6px 20px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05),
+                0 0 20px rgba(255, 215, 0, 0.2);
         }
 
         .bet-buttons {
@@ -290,7 +391,7 @@
             font-size: 1.1rem;
             font-weight: 600;
             border: none;
-            border-radius: 12px;
+            border-radius: 15px;
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
@@ -298,6 +399,9 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             min-width: 120px;
+            box-shadow: 
+                0 5px 15px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
         }
 
         .bet-button::before {
@@ -320,12 +424,16 @@
 
         .bet-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            box-shadow: 
+                0 10px 25px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
         }
 
         .bet-button.selected {
-            transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+            box-shadow: 
+                0 0 20px rgba(255, 255, 255, 0.4),
+                0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         .red-btn {
@@ -355,13 +463,14 @@
 
         .spin-button {
             display: block;
-            margin: 0 auto 30px;
-            padding: 15px 40px;
-            font-size: 1.3rem;
+            margin: 0 auto 15px;
+            padding: 18px 45px;
+            font-size: 1.4rem;
             font-weight: 700;
             border: none;
-            border-radius: 12px;
-            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            border-radius: 20px;
+            background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
+            background-size: 200% 200%;
             color: #000;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -369,24 +478,36 @@
             letter-spacing: 2px;
             position: relative;
             overflow: hidden;
+            box-shadow: 
+                0 8px 25px rgba(255, 215, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            animation: spinButtonGlow 2s ease-in-out infinite alternate;
         }
 
         .spin-button:hover {
-            background: linear-gradient(45deg, #ffed4e, #ffd700);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+            background: linear-gradient(45deg, #ffed4e, #ffd700, #ffed4e);
+            transform: translateY(-3px);
+            box-shadow: 
+                0 12px 35px rgba(255, 215, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
         }
 
         .spin-button:disabled {
             opacity: 0.5;
             cursor: not-allowed;
             transform: none;
+            animation: none;
+        }
+
+        @keyframes spinButtonGlow {
+            0% { box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3); }
+            100% { box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3); }
         }
 
         .result-display {
             text-align: center;
-            margin: 20px 0;
-            min-height: 60px;
+            margin: 10px 0;
+            min-height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -395,11 +516,14 @@
         .result-text {
             font-size: 1.5rem;
             font-weight: 600;
-            padding: 15px 30px;
-            border-radius: 10px;
-            background: rgba(0, 0, 0, 0.5);
+            padding: 18px 35px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(20, 20, 20, 0.6));
             border: 2px solid transparent;
             transition: all 0.3s ease;
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
         .result-win {
@@ -424,14 +548,40 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
-            margin-top: 30px;
+            margin-top: 15px;
         }
 
         .stats-card {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 12px;
-            padding: 20px;
-            border: 1px solid rgba(255, 215, 0, 0.2);
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(25, 25, 25, 0.6));
+            border-radius: 18px;
+            padding: 25px;
+            border: 2px solid rgba(255, 215, 0, 0.15);
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05),
+                0 0 50px rgba(255, 215, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .stats-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.7),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05),
+                0 0 60px rgba(255, 215, 0, 0.12);
+            border-color: rgba(255, 215, 0, 0.25);
+        }
+
+        .stats-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
         }
 
         .stats-title {
@@ -498,13 +648,17 @@
         }
 
         .modal-content {
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            border-radius: 15px;
-            padding: 30px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(20, 20, 20, 0.9));
+            border-radius: 20px;
+            padding: 35px;
             max-width: 400px;
             width: 90%;
             text-align: center;
-            border: 2px solid #ffd700;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.8),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05),
+                0 0 100px rgba(255, 215, 0, 0.1);
         }
 
         .modal-title {
@@ -553,7 +707,11 @@
 
         @media (max-width: 768px) {
             .casino-title {
-                font-size: 2rem;
+                font-size: 2.2rem;
+            }
+            
+            .casino-subtitle {
+                font-size: 1rem;
             }
             
             .bet-buttons {
@@ -609,12 +767,12 @@
     </style>
 </head>
 <body>
-    <div class="casino-header">
-        <h1 class="casino-title">TATAYA AKO!</h1>
-        <p class="casino-subtitle">Kulay It To Win It!</p>
-    </div>
-
     <div class="game-container">
+        <div class="casino-header">
+            <h1 class="casino-title">TATAYA AKO!</h1>
+            <p class="casino-subtitle">Kulay It To Win It!</p>
+        </div>
+
         <div class="balance-section">
             <div class="balance-info">
                 <div class="balance-label">Your Balance</div>
@@ -649,10 +807,10 @@
             
             <div class="quick-bet-buttons">
                 <button class="quick-bet-btn" data-amount="100">₱100</button>
+                <button class="quick-bet-btn" data-amount="200">₱200</button>
                 <button class="quick-bet-btn" data-amount="500">₱500</button>
+                <button class="quick-bet-btn" data-amount="750">₱750</button>
                 <button class="quick-bet-btn" data-amount="1000">₱1,000</button>
-                <button class="quick-bet-btn" data-amount="2500">₱2,500</button>
-                <button class="quick-bet-btn" data-amount="5000">₱5,000</button>
             </div>
 
             <div class="bet-buttons">
