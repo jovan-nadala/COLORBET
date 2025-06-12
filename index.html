@@ -714,19 +714,271 @@
                 font-size: 1rem;
             }
             
-            .bet-buttons {
-                flex-direction: column;
-                align-items: center;
+            .game-container {
+                padding: 25px;
+                margin: 10px;
             }
             
             .balance-section {
                 flex-direction: column;
                 gap: 15px;
+                padding: 20px;
             }
             
             .wheel {
                 width: 250px;
                 height: 250px;
+                font-size: 1.5rem;
+            }
+            
+            .bet-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .bet-button {
+                min-width: 200px;
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+            
+            .quick-bet-buttons {
+                flex-wrap: wrap;
+                gap: 8px;
+                justify-content: center;
+            }
+            
+            .quick-bet-btn {
+                padding: 8px 12px;
+                font-size: 0.9rem;
+                min-width: 60px;
+            }
+            
+            .bet-amount-input {
+                width: 120px;
+                padding: 10px 15px;
+                font-size: 1.1rem;
+            }
+            
+            .spin-button {
+                padding: 15px 35px;
+                font-size: 1.2rem;
+            }
+            
+            .stats-section {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .stats-card {
+                padding: 20px;
+            }
+            
+            .stats-grid {
+                gap: 10px;
+            }
+            
+            .stat-value {
+                font-size: 1.3rem;
+            }
+            
+            .modal-content {
+                padding: 25px;
+                margin: 20px;
+            }
+            
+            .cash-buttons {
+                gap: 8px;
+            }
+            
+            .cash-btn {
+                padding: 10px 18px;
+                font-size: 0.9rem;
+            }
+            
+            .result-color-indicator {
+                padding: 12px;
+                gap: 10px;
+            }
+            
+            .indicator-label {
+                font-size: 1rem;
+            }
+            
+            .result-color-text {
+                font-size: 1.2rem;
+            }
+            
+            .color-dot {
+                width: 25px;
+                height: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .casino-title {
+                font-size: 1.8rem;
+                letter-spacing: 2px;
+            }
+            
+            .casino-subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .game-container {
+                padding: 20px;
+                margin: 5px;
+            }
+            
+            .balance-section {
+                padding: 15px;
+            }
+            
+            .balance-amount {
+                font-size: 1.5rem;
+            }
+            
+            .wheel {
+                width: 200px;
+                height: 200px;
+                font-size: 1.2rem;
+            }
+            
+            .bet-buttons {
+                gap: 10px;
+            }
+            
+            .bet-button {
+                min-width: 180px;
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .quick-bet-buttons {
+                gap: 6px;
+            }
+            
+            .quick-bet-btn {
+                padding: 6px 10px;
+                font-size: 0.8rem;
+                min-width: 50px;
+            }
+            
+            .bet-amount-input {
+                width: 100px;
+                padding: 8px 12px;
+                font-size: 1rem;
+            }
+            
+            .bet-amount-controls {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .spin-button {
+                padding: 12px 30px;
+                font-size: 1.1rem;
+            }
+            
+            .result-text {
+                font-size: 1.2rem;
+                padding: 12px 20px;
+            }
+            
+            .stats-card {
+                padding: 15px;
+            }
+            
+            .stat-value {
+                font-size: 1.1rem;
+            }
+            
+            .stat-label {
+                font-size: 0.7rem;
+            }
+            
+            .modal-content {
+                padding: 20px;
+                margin: 15px;
+            }
+            
+            .modal-input {
+                padding: 12px;
+                font-size: 1rem;
+            }
+            
+            .cash-btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .result-color-indicator {
+                padding: 10px;
+                gap: 8px;
+            }
+            
+            .indicator-label {
+                font-size: 0.9rem;
+            }
+            
+            .result-color-text {
+                font-size: 1.1rem;
+            }
+            
+            .color-dot {
+                width: 20px;
+                height: 20px;
+            }
+            
+            .history-item {
+                font-size: 0.8rem;
+                padding: 6px 0;
+            }
+            
+            .modal-buttons {
+                gap: 10px;
+            }
+            
+            .modal-btn {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .casino-title {
+                font-size: 1.5rem;
+                letter-spacing: 1px;
+            }
+            
+            .wheel {
+                width: 180px;
+                height: 180px;
+                font-size: 1rem;
+            }
+            
+            .bet-button {
+                min-width: 160px;
+                padding: 8px 15px;
+                font-size: 0.8rem;
+            }
+            
+            .quick-bet-btn {
+                padding: 5px 8px;
+                font-size: 0.7rem;
+                min-width: 45px;
+            }
+            
+            .bet-amount-input {
+                width: 90px;
+                padding: 6px 10px;
+                font-size: 0.9rem;
+            }
+            
+            .spin-button {
+                padding: 10px 25px;
+                font-size: 1rem;
             }
         }
 
